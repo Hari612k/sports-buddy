@@ -1,0 +1,29 @@
+Firestore Database Schema for Sports Buddy
+------------------------------------------
+
+1. Collection: joinedSports
+   - email: string
+   - sport: string
+   - timestamp: timestamp
+
+2. Collection: userEvents
+   - email: string
+   - name: string
+   - location: string
+   - time: string
+   - timestamp: timestamp
+
+3. Collection: sports
+   - name: string
+
+4. Collection: cities
+   - name: string
+
+5. Collection: areas
+   - name: string
+
+6. Collection: logs
+   - action: string
+   - actor: string
+   - description: string
+   - timestamp: timestamp

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sports Buddy | User Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <header>
+    <div id="welcomeUser" class="welcome-message"></div>
+    <img src="assets/logo.png" alt="Sports Buddy Logo" class="logo-small" />
+    <h1>Welcome to Sports Buddy</h1>
+    <button id="logoutBtn">Logout</button>
+  </header>
+
+  <main class="sports-list">
+    <h2>Select a Sport</h2>
+    
+    <div class="sport-card">
+      <img src="assets/sports/cricket.png" alt="Cricket" />
+      <p>Cricket</p>
+      <button class="join-btn">Join</button>
+    </div>
+    <div class="sport-card">
+      <img src="assets/sports/football.jpg" alt="Football" />
+      <p>Football</p>
+      <button class="join-btn">Join</button>
+    </div>
+    <div class="sport-card">
+      <img src="assets/sports/tennis.jpg" alt="Tennis" />
+      <p>Tennis</p>
+      <button class="join-btn">Join</button>
+    </div>
+    <div class="sport-card">
+      <img src="assets/sports/running.jpg" alt="Running" />
+      <p>Running</p>
+      <button class="join-btn">Join</button>
+    </div>
+    <div class="sport-card">
+      <img src="assets/sports/badminton.jpg" alt="Badminton" />
+      <p>Badminton</p>
+      <button class="join-btn">Join</button>
+    </div>
+
+    <section class="user-sports-section">
+      <h2>Your Created Sports Events</h2>
+      <ul id="userEventsList" class="event-list"></ul>
+    </section>
+
+    <section class="create-sport-form">
+      <h2>Add New Sport Event</h2>
+      <form id="addEventForm">
+        <input type="text" id="eventName" placeholder="Enter Sport Name" required />
+        <input type="text" id="eventLocation" placeholder="Enter Location" required />
+        <input type="datetime-local" id="eventTime" required />
+        <button type="submit">Add Event</button>
+      </form>
+    </section>
+
+  </main>
+
+  <script type="module" src="js/firebase.js"></script>
+  <script type="module" src="js/user-functions.js"></script>
+
+</body>
+</html>

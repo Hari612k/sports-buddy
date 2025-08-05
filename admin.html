@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Panel | Sports Buddy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <header>
+    <img src="assets/logo.png" alt="Sports Buddy Logo" class="logo-small" />
+    <h1>Admin Dashboard</h1>
+    <button id="logoutBtn">Logout</button>
+  </header>
+
+  <main class="admin-panel">
+    <section>
+      <h2>Registered Users & Events</h2>
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search by email or sport..."
+        class="search-box"
+      />
+
+      <table>
+        <thead>
+          <tr>
+            <th>User Email</th>
+            <th>Sport Joined</th>
+            <th>Timestamp</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="userTableBody"></tbody>
+      </table>
+
+      <p id="noDataMessage" style="display: none; text-align:center;">No users have joined yet.</p>
+    </section>
+
+    <section class="admin-section">
+      <h2>Manage Sports Categories</h2>
+      <form id="sportCategoryForm">
+        <input type="text" id="sportCategoryInput" placeholder="New Sport Category" required />
+        <button type="submit">Add Category</button>
+      </form>
+      <ul id="sportCategoryList" class="admin-list"></ul>
+    </section>
+
+    <section class="admin-section">
+      <h2>Manage Cities</h2>
+      <form id="cityForm">
+        <input type="text" id="cityInput" placeholder="New City" required />
+        <button type="submit">Add City</button>
+      </form>
+      <ul id="cityList" class="admin-list"></ul>
+    </section>
+
+    <section class="admin-section">
+      <h2>Manage Areas</h2>
+      <form id="areaForm">
+        <input type="text" id="areaInput" placeholder="New Area" required />
+        <button type="submit">Add Area</button>
+      </form>
+      <ul id="areaList" class="admin-list"></ul>
+    </section>
+  </main>
+
+  <script type="module" src="js/firebase.js"></script>
+  <script type="module" src="js/admin-functions.js"></script>
+</body>
+</html>

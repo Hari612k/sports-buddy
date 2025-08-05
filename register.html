@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Register | Sports Buddy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <div class="login-container">
+    <img src="assets/logo.png" alt="Sports Buddy Logo" class="logo" />
+    <h2>Register for Sports Buddy</h2>
+
+    <input type="email" id="regEmail" placeholder="Email" required />
+    <input type="password" id="regPassword" placeholder="Password" required />
+    <button id="registerBtn">Register</button>
+
+    <p id="registerError" style="color: red; font-size: 14px;"></p>
+    <p style="margin-top: 10px;">
+      Already have an account? <a href="login.html">Login</a>
+    </p>
+  </div>
+
+  <script type="module" src="js/firebase.js"></script>
+  <script type="module" src="js/register.js"></script>
+
+</body>
+</html>
