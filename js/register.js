@@ -16,17 +16,31 @@ registerBtn.addEventListener("click", async () => {
     return;
   }
 
+  if (email === "admin@sportsbuddy.com") {
+    registerError.textContent = "You cannot register using the admin email.";
+    return;
+  }
+
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     console.log("Registration successful:", userCredential.user);
 
     await logAction("User Registered", email, "New user registered successfully");
 
-    window.location.href = "user.html";
+    window.location.href = "welcome.html";
   } catch (error) {
     console.error("Registration error:", error.message);
-    registerError.textContent = error.message;
 
+    let errorMessage = "Registration failed. Please try again.";
+    if (error.code === "auth/email-already-in-use") {
+      errorMessage = "This email is already registered.";
+    } else if (error.code === "auth/weak-password") {
+      errorMessage = "Password should be at least 6 characters.";
+    } else if (error.code === "auth/invalid-email") {
+      errorMessage = "Please enter a valid email.";
+    }
+
+    registerError.textContent = errorMessage;
     await logAction("Registration Failed", email, error.message);
   }
 });

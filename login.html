@@ -1,27 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | Sports Buddy</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="login-container">
+    <img src="assets/logo.png" alt="Sports Buddy Logo" class="logo" />
+    <h2>Login to Sports Buddy</h2>
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login | Sports Buddy</title>
-    <link rel="stylesheet" href="css/styles.css" />
-  </head>
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <button id="loginBtn">Login</button>
 
-  <body>
-    <div class="login-container">
-      <img src="assets/logo.png" alt="Sports Buddy Logo" class="logo" />
-      <h2>Login to Sports Buddy</h2>
+    <p style="margin-top: 10px;">
+      <a href="#" id="forgotPasswordLink" style="font-size: 14px;">Forgot Password?</a>
+    </p>
 
-      <input type="email" id="email" placeholder="Email" required />
-      <input type="password" id="password" placeholder="Password" required />
-      <button id="loginBtn">Login</button>
-
-      <p id="error" style="color: red; font-size: 14px;"></p>
+    <div id="resetContainer" style="display: none; margin-top: 10px;">
+      <input type="email" id="resetEmail" placeholder="Enter your email for reset" required />
+      <button id="resetBtn">Send Reset Link</button>
+      <p id="resetMessage" style="font-size: 14px;"></p>
     </div>
 
-    <script type="module" src="js/firebase.js"></script>
-    <script type="module" src="js/auth.js"></script>
-  </body>
+    <p id="error" style="color: red; font-size: 14px;"></p>
+    <p style="margin-top: 15px;">
+      Need help? <a href="guide.html" style="color: #1976d2; font-weight: bold;">Read our Guide</a>
+    </p>
+  </div>
 
+  <script type="module" src="js/firebase.js"></script>
+  <script type="module" src="js/auth.js"></script>
+</body>
 </html>

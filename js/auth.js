@@ -1,13 +1,22 @@
 import { auth } from "./firebase.js";
-import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
 import { logAction } from "./logger.js";
 
-const loginBtn = document.getElementById("loginBtn");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const errorDisplay = document.getElementById("error");
 
-loginBtn.addEventListener("click", async () => {
+const forgotLink = document.getElementById("forgotPasswordLink");
+const resetContainer = document.getElementById("resetContainer");
+const resetEmailInput = document.getElementById("resetEmail");
+const resetBtn = document.getElementById("resetBtn");
+const resetMsg = document.getElementById("resetMessage");
+
+loginBtn?.addEventListener("click", async () => {
   const email = emailInput.value.trim();
   const password = passwordInput.value;
 
@@ -18,19 +27,61 @@ loginBtn.addEventListener("click", async () => {
 
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    console.log("Login success:", userCredential.user);
-
     await logAction("Login Success", email, "User successfully logged in");
 
-    if (email === "admin@sportsbuddy.com") {
+    if (email === "sportsbuddy.aug5@gmail.com") {
       window.location.href = "admin.html";
     } else {
       window.location.href = "user.html";
     }
-
   } catch (error) {
-    console.error("Login error:", error.message);
-    errorDisplay.textContent = "Invalid email or password.";
+    let errorMessage = "Login failed. Please check your credentials.";
+    if (error.code === "auth/user-not-found") {
+      errorMessage = "User not found.";
+    } else if (error.code === "auth/wrong-password") {
+      errorMessage = "Incorrect password.";
+    } else if (error.code === "auth/invalid-email") {
+      errorMessage = "Invalid email format.";
+    }
+
+    errorDisplay.textContent = errorMessage;
     await logAction("Login Failed", email, error.message);
+  }
+});
+
+forgotLink?.addEventListener("click", (e) => {
+  e.preventDefault();
+  resetContainer.style.display = "block";
+});
+
+resetBtn?.addEventListener("click", async () => {
+  const email = resetEmailInput.value.trim();
+
+  if (!email) {
+    resetMsg.style.color = "red";
+    resetMsg.textContent = "Please enter your email.";
+    return;
+  }
+
+  try {
+    await sendPasswordResetEmail(auth, email, {
+      url: "https://hari612k.github.io/sports-buddy",
+      handleCodeInApp: true,
+    });
+
+    resetMsg.style.color = "green";
+    resetMsg.textContent = "Reset link sent to your email.";
+    await logAction("Password Reset Sent", email, "Reset email sent.");
+  } catch (error) {
+    console.error("Reset error:", error.code);
+    let msg = "Failed to send reset link.";
+    if (error.code === "auth/user-not-found") {
+      msg = "No account found with that email.";
+    } else if (error.code === "auth/invalid-email") {
+      msg = "Invalid email format.";
+    }
+    resetMsg.style.color = "red";
+    resetMsg.textContent = msg;
+    await logAction("Password Reset Failed", email, error.message);
   }
 });

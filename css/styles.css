@@ -35,22 +35,6 @@ header p {
   color: #555;
 }
 
-#logoutBtn{
-  padding: 8px 16px;
-  background-color: #f44336;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
-#logoutBtn:hover{
-  background-color: #d32f2f;
-}
-
 .landing-buttons{
   text-align: center;
   margin-top: 50px;
@@ -263,9 +247,8 @@ form button:hover{
 }
 
 .welcome-message{
-  position: absolute;
-  top: 20px;
-  left: 20px;
+  margin: 20px;
+  display: inline-block;
   background-color: rgba(255,255,255,0.9);
   padding: 8px 12px;
   border-radius: 6px;
@@ -391,4 +374,85 @@ tr:hover {
 
 .delete-btn:hover {
   background-color: #c9302c;
+}
+
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 12px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1000;
+}
+
+.logo-title{
+  font-size: 20px;
+  font-weight: bold;
+  color: #1976d2;
+}
+
+.hamburger{
+  display: none;
+  font-size: 26px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-links{
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links li a{
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.nav-links li a:hover{
+  color: #1976d2;
+}
+
+#logoutBtnNav{
+  padding: 8px 14px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#logoutBtnNav:hover{
+  background-color: #d32f2f;
+}
+
+@media (max-width: 768px){
+  .hamburger{
+    display: block;
+  }
+
+  .nav-links{
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .nav-links.show{
+    display: flex;
+  }
+
+  #logoutBtnNav{
+    width: 100%;
+    margin-top: 10px;
+  }
 }

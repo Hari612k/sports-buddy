@@ -1,6 +1,6 @@
 # Sports Buddy 🏏🏃‍♂️🏀
 
-**Sports Buddy** is a web-based platform that helps users connect over local sports events. It allows users to register, log in, join existing sports, or create and manage their own events. Admins can manage sports categories, cities, and areas to keep the platform organized.
+**Sports Buddy** is a lightweight web platform to help users create and join local sports events. It includes user-friendly modules for users and admin panels for efficient category and location management. Built using Firebase and deployed on Github Pages & Netlify.
 
 ---
 
@@ -8,30 +8,30 @@
 
 ### 👤 User Modules
 
-- Register and login with Firebase Authentication
-- View and join available sports (like Cricket, Football, etc.)
-- Add custom sports events (name, location, time)
-- Edit or delete your own created sports events
-- Responsive dashboard with logout option
+- Register and login using Firebase Authentication
+- View and join default sports (Cricket, Football, Tennis, etc.)
+- Create, update, and delete your own custom sport events
+- Responsive design with logout and navigation bar
+- Guide page available before and after login for help
 
 ### 🔐 Admin Modules
 
-- Secure login
-- View all registered users and joined sports
-- Add / update / delete:
+- Admin login with restricted access
+- View registered users and the sports they joined
+- Manage (add/delete):
   - Sports Categories
   - Cities
   - Areas
-- Real-time search and filter
-- Action logging for all major admin tasks
+- Real-time search and filters
+- Logging system for all major actions
 
 ---
 
 ## 🧠 System Architecture
 
-- **Frontend:** HTML5, CSS3, JavaScript (modular)
-- **Backend:** Firebase Authentication, Firestore (NoSQL DB)
-- **Hosting:** Static files (locally hosted), Firebase cloud services
+- **Frontend:** HTML5, CSS3, JavaScript (Modular)
+- **Backend:** Firebase Authentication + Firestore (NoSQL)
+- **Hosting:** Netlify (Frontend), Firebase (Backend Services)
 
 ---
 
@@ -47,14 +47,21 @@
 │   ├── register.js
 │   ├── admin-functions.js
 │   ├── user-functions.js
+│   ├── navbar.js
 │   └── logger.js
+├── components/
+│   └── navbar.html
 ├── assets/
-│   └── (logo + background + sport icons)
+│   ├── logo.png
+│   ├── background.jpg
+│   └── sports/ (icons for each sport)
 ├── index.html
 ├── login.html
 ├── register.html
 ├── user.html
 ├── admin.html
+├── welcome.html
+├── guide.html
 ├── README.md
 └── report.docx
 ```
@@ -65,18 +72,29 @@
 
 ### Collections:
 
-- **joinedSports:** `{ email, sport, timestamp }`
-- **userEvents:** `{ email, name, location, time, timestamp }`
-- **sportsCategories:** `{ name }`
-- **cities:** `{ name }`
-- **areas:** `{ name }`
-- **logs:** `{ actor, action, description, timestamp }`
+- **joinedSports**:  
+  `{ email, sport, timestamp }`
+
+- **userEvents**:  
+  `{ email, name, location, time, timestamp }`
+
+- **sportsCategories**:  
+  `{ name }`
+
+- **cities**:  
+  `{ name }`
+
+- **areas**:  
+  `{ name }`
+
+- **logs**:  
+  `{ actor, action, description, timestamp }`
 
 ---
 
 ## 📝 Logging
 
-All major actions (e.g. login, event creation, deletion, admin CRUD tasks) are logged in the **logs** Firestore collection for tracking and debugging.
+All major user and admin actions (login, join/delete sports, admin CRUD) are recorded in the `logs` collection in Firestore for tracking and debugging.
 
 ---
 
@@ -84,44 +102,55 @@ All major actions (e.g. login, event creation, deletion, admin CRUD tasks) are l
 
 1. Clone the repository:
 
-   ```
+   ```bash
    git clone https://github.com/Hari612k/sports-buddy.git
    ```
 
-2. Open in VS Code or any IDE.
+2. Open the folder in **VS Code** or your preferred IDE.
 
-3. Replace Firebase config in `js/firebase.js` with your own Firebase project credentials.
+3. Replace the Firebase config in `js/firebase.js` with your own project credentials.
 
-4. Open `index.html` in your browser to get started.
+4. Launch `index.html` in a browser to start.
 
 ---
 
 ## 🧪 Test Cases
 
-| Module            | Action               | Expected Result              |
-| ----------------- | -------------------- | ---------------------------- |
-| User Registration | New user fills form  | Account created & redirected |
-| Login             | Valid credentials    | Dashboard loaded             |
-| Add Event         | Fill and submit form | Event shown in list          |
-| Edit Event        | Click edit → update  | Event data updated           |
-| Delete Event      | Click delete         | Event removed                |
-| Admin Login       | Correct login        | Admin dashboard shown        |
-| Admin Add City    | Submit new city      | City added to list           |
-| Logging           | Any action           | Log created in Firestore     |
+| Module          | Action                | Expected Result              |
+| --------------- | --------------------- | ---------------------------- |
+| Registration    | New user submits form | Account created & redirected |
+| Login           | Valid credentials     | Dashboard loaded             |
+| Forgot Password | Email input & submit  | Reset email sent             |
+| Add Event       | Fill and submit form  | Event shown in user list     |
+| Edit Event      | Click edit & update   | Event updated in real-time   |
+| Delete Event    | Click delete button   | Event removed from list      |
+| Admin Login     | Enter admin details   | Admin panel loaded           |
+| Admin Add City  | Submit city form      | City appears in list         |
+| Logging         | Perform any action    | Entry added to `logs`        |
 
 ---
 
 ## 💡 Deployment Justification
 
-- **Firebase** was chosen for its real-time database and authentication features, simplifying backend work for a lightweight web app.
-- The app can be hosted locally or on Firebase Hosting if needed.
-- All assets are frontend-based, with Firebase as backend, making deployment platform-independent.
+- **Firebase** enables seamless real-time updates and user authentication without a heavy backend setup.
+- **Netlify** used for easy and free hosting of static files.
+- The app is modular and mobile-friendly.
+- Project satisfies the complete functional requirements of the Sports Buddy system.
+
+---
+
+## 🌐 Live Demo
+
+deployed to:
+
+🔗 Github Pages : https://hari612k.github.io/sports-buddy
+
+Netlify :
 
 ---
 
 ## 👤 Author
 
 **Harikrishna Gangadi**  
-📧 gangadiharikrishna314@gmail.com  
 🔗 [LinkedIn](https://www.linkedin.com/in/hari-krishna-358050303/)  
 💻 [GitHub](https://github.com/Hari612k)

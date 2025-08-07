@@ -9,19 +9,15 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import { logAction } from "./logger.js";
 
-document.getElementById("logoutBtn").addEventListener("click", () => {
-  signOut(auth).then(() => {
-    logAction("Logout", "Admin", "Admin logged out");
-    window.location.href = "login.html";
-  }).catch((error) => {
-    console.error("Logout error:", error);
-  });
-});
+let currentUserEmail = "";
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) return window.location.href = "login.html";
 
+  currentUserEmail = user.email;
+
   await logAction("Admin Login", user.email, "Accessed Admin Panel");
+
   loadJoinedSports();
   loadCollection("sports", "sportCategoryList");
   loadCollection("cities", "cityList");
@@ -65,6 +61,11 @@ async function loadJoinedSports() {
         await logAction("Delete Entry", data.email, `Removed: ${data.sport}`);
         if (!userTableBody.children.length) noDataMessage.style.display = "block";
       } catch (err) {
+        if (err.code === "permission-denied") {
+          alert("You don't have permission to delete this item.");
+        } else {
+          alert("Failed to delete.");
+        }
         console.error("Delete error:", err);
         await logAction("Delete Error", "Admin", err.message);
       }
@@ -97,7 +98,13 @@ async function loadCollection(collectionName, listId) {
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Remove";
     deleteBtn.className = "delete-btn";
+
     deleteBtn.addEventListener("click", async () => {
+      if (currentUserEmail !== "sportsbuddy.aug5@gmail.com") {
+        alert("You don't have permission to delete this item.");
+        return;
+      }
+
       try {
         await deleteDoc(doc(db, collectionName, docSnap.id));
         await logAction("Delete", "Admin", `Deleted ${docSnap.data().name} from ${collectionName}`);
@@ -118,6 +125,12 @@ function setupFormHandler(formId, inputId, collectionName) {
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+
+    if (currentUserEmail !== "sportsbuddy.aug5@gmail.com") {
+      alert("You don't have permission to add items in this section.");
+      return;
+    }
+
     const value = input.value.trim();
     if (!value) return;
 

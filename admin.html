@@ -11,7 +11,6 @@
   <header>
     <img src="assets/logo.png" alt="Sports Buddy Logo" class="logo-small" />
     <h1>Admin Dashboard</h1>
-    <button id="logoutBtn">Logout</button>
   </header>
 
   <main class="admin-panel">
@@ -23,7 +22,6 @@
         placeholder="Search by email or sport..."
         class="search-box"
       />
-
       <table>
         <thead>
           <tr>
@@ -35,7 +33,6 @@
         </thead>
         <tbody id="userTableBody"></tbody>
       </table>
-
       <p id="noDataMessage" style="display: none; text-align:center;">No users have joined yet.</p>
     </section>
 
@@ -69,5 +66,7 @@
 
   <script type="module" src="js/firebase.js"></script>
   <script type="module" src="js/admin-functions.js"></script>
+  <script type="module" src="js/navbar.js"></script>
+  
 </body>
 </html>

@@ -12,7 +12,6 @@ import {
 
 import { logAction } from "./logger.js";
 
-const logoutBtn = document.getElementById("logoutBtn");
 const welcomeUser = document.getElementById("welcomeUser");
 const joinButtons = document.querySelectorAll(".join-btn");
 const addEventForm = document.getElementById("addEventForm");
@@ -20,17 +19,6 @@ const eventNameInput = document.getElementById("eventName");
 const eventLocationInput = document.getElementById("eventLocation");
 const eventTimeInput = document.getElementById("eventTime");
 const userEventsList = document.getElementById("userEventsList");
-
-logoutBtn.addEventListener("click", () => {
-  signOut(auth)
-    .then(() => {
-      logAction("Logout", "User", "User logged out");
-      window.location.href = "login.html";
-    })
-    .catch((error) => {
-      console.error("Logout error:", error);
-    });
-});
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
