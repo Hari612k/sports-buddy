@@ -145,7 +145,7 @@ deployed to:
 
 🔗 Github Pages : https://hari612k.github.io/sports-buddy
 
-Netlify :
+Netlify : https://sportsbuddyapp.netlify.app/
 
 ---
 
