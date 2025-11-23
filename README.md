@@ -147,6 +147,10 @@ deployed to:
 
 Netlify : https://sportsbuddyapp.netlify.app/
 
+Project Console: https://console.firebase.google.com/project/sports-buddy-e569a/overview
+
+Hosting URL: https://sports-buddy-e569a.web.app
+
 ---
 
 ## 👤 Author
