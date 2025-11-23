@@ -151,6 +151,8 @@ Project Console: https://console.firebase.google.com/project/sports-buddy-e569a/
 
 Hosting URL: https://sports-buddy-e569a.web.app
 
+https://sports-buddy-e569a.firebaseapp.com/
+
 ---
 
 ## 👤 Author
